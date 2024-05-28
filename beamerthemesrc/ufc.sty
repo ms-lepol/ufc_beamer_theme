@@ -117,11 +117,11 @@
 
 \def\@courseLabel{}
 \def\@IDnumber{}
-\def\@Encadrant{}
+\def\@Encadrants{}
 
 \newcommand{\course}[1]{\def\@courseLabel{#1}}
 \newcommand{\IDnumber}[1]{\def\@IDnumber{#1}}
-\newcommand{\Encadrant}[1]{\def\@Encadrant{#1}}
+\newcommand{\Encadrants}[1]{\renewcommand{\@Encadrants}{#1}}
 
 % Define the title page
 \setbeamertemplate{title page}{%
@@ -138,7 +138,9 @@
     
     {\usebeamerfont{author}\usebeamercolor[fg]{author}\textbf{\insertauthor} \ifdefempty{\@IDnumber}{}{(\@IDnumber)}}
 
-    {\usebeamerfont{author}\usebeamercolor[fg]{author}Encadrant : \@Encadrant \ifdefempty{\@IDnumber}{}{(\@IDnumber)}}
+    \foreach \encadrant in \@Encadrants {
+      {\usebeamerfont{author}\usebeamercolor[fg]{author}Encadrant : \encadrant \ifdefempty{\@IDnumber}{}{(\@IDnumber)} \\}
+    }
     
     {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate}
   \end{beamercolorbox}
